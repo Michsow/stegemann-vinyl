@@ -1,0 +1,41 @@
+header {
+  background-color: #f8f8f8;
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
+}
+.header-content-fix{
+  display: flex;
+  gap: 20px;
+}
+.product-box {
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+.shop-layout {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+}
+
+.shop-sidebar {
+  width: 250px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.shop-products .product {
+  border: 1px solid #eee;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+header .header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop-content {
+  flex: 1;
+}
