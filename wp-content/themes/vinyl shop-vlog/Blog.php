@@ -5,21 +5,6 @@ Template Name: Vlog Page
 get_header(); ?>
 
 <main class="vlog-container">
-<?php
-// WP Query for posts
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-$query = new WP_Query([
-    'post_type' => 'post',
-    'posts_per_page' => 10,
-    'paged' => $paged
-]);
-
-if ($query->have_posts()) :
-    while ($query->have_posts()) : $query->the_post(); ?>
-        
-       <?php
-/* Template Name: Custom Shop Homepage */
-get_header(); ?>
 <div class="shop-layout">
 
   <aside class="shop-sidebar">
@@ -48,61 +33,60 @@ get_header(); ?>
             <span class="filter-desc">Menu description.</span>
           </div>
         </li>
-        <!-- repeat -->
       </ul>
     </div>
   </aside>
 
-  <div class="shop-content">
-    <h1 class="content-heading">Vlogs</h1>
-    <p class="content-subheading"></p>
+ <div class="shop-content">
+  <h1 class="content-heading">Blogs</h1>
 
-    <div class="product-list">
-      <div class="product-row">
-        <div class="product-thumb"></div>
-        <div class="product-body">
-          <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-          <p>Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</p>
-          <button class="btn">Button</button>
-        </div>
-      </div>
+  <div class="product-list">
+    <?php
+      $args = [
+        'post_type' => 'post',
+        'posts_per_page' => 10,
+        'paged' => get_query_var('paged') ?: 1
+      ];
 
-      <div class="product-row">
-        <div class="product-thumb"></div>
-        <div class="product-body">
-          <h2>Title</h2>
-          <p>Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</p>
-          <button class="btn">Button</button>
-        </div>
-      </div>
-    </div>
+      $loop = new WP_Query($args);
 
+      if ($loop->have_posts()) :
+        while ($loop->have_posts()) : $loop->the_post(); ?>
+
+          <div class="product-row">
+            <div class="product-thumb">
+              <?php if (has_post_thumbnail()) : ?>
+                <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('medium'); ?></a>
+              <?php else: ?>
+                <img src="https://via.placeholder.com/300x200" alt="No Image">
+              <?php endif; ?>
+            </div>
+
+            <div class="product-body">
+              <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+              <p><?php echo wp_trim_words(get_the_excerpt(), 25); ?></p>
+              <a href="<?php the_permalink(); ?>" class="btn">Read More</a>
+              <p class="date"><?php echo get_the_date(); ?></p>
+            </div>
+          </div>
+
+        <?php endwhile;
+
+        echo paginate_links([
+          'total' => $loop->max_num_pages
+        ]);
+
+      else :
+        echo "<p>No posts found.</p>";
+      endif;
+
+      wp_reset_postdata();
+    ?>
   </div>
 
 </div>
 
-
-  <main class="shop-products">
-   
-  </main>
 </div>
-
-<?php get_footer(); ?>
-
-
-    <?php endwhile;
-
-    // Pagination
-    echo paginate_links([
-        'total' => $query->max_num_pages
-    ]);
-
-else :
-    echo "<p>No posts found.</p>";
-endif;
-
-wp_reset_postdata();
-?>
 </main>
 
 <?php get_footer(); ?>

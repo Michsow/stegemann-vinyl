@@ -12,3 +12,5 @@ function myshop_assets() {
 }
 add_action('wp_enqueue_scripts', 'myshop_assets');
 require_once get_template_directory() . '/assets/auth-ajax.php';
+add_theme_support('post-thumbnails');
+add_image_size('custom-size', 300, 300, true);
