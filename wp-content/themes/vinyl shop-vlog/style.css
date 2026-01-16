@@ -190,3 +190,71 @@ body {
 .btn:hover {
   background: #e4e4e4;
 }
+.auth-overlay {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  z-index:9999;
+  justify-content:center;
+  align-items:center;
+}
+
+.auth-box {
+  background:white;
+  border-radius:12px;
+  width:350px;
+  padding:25px;
+  position:relative;
+  font-family:sans-serif;
+}
+
+.close-popup {
+  position:absolute;
+  right:15px;
+  top:10px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.auth-tabs {
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.tab-btn {
+  flex:1;
+  padding:10px;
+  border:0;
+  background:#eee;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.tab-btn.active {
+  background:#ccc;
+}
+
+.auth-form {
+  display:none;
+  flex-direction:column;
+  gap:10px;
+}
+.auth-form.active { display:flex; }
+
+input {
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+
+.auth-btn {
+  background:#222;
+  color:white;
+  border:0;
+  padding:12px;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:5px;
+}
