@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+  <?php get_template_part('template-parts/Sign-In'); ?>
+<?php get_template_part('template-parts/Register'); ?>
+
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <?php wp_head(); ?>
@@ -23,42 +26,6 @@
     </div>
 
   </div>
-<div id="auth-popup-login" class="auth-overlay">
-  <div class="auth-box">
-    <span class="close-popup" onclick="closeLoginPopup()">×</span>
-
-    <form id="login-form" class="auth-form active">
-      <label>Email</label>
-      <input id="login-email" type="email" placeholder="Value" required>
-
-      <label>Password</label>
-      <input id="login-password" type="password" placeholder="Value" required>
-
-      <button type="submit" class="auth-btn">Sign In</button>
-      <a href="<?php echo wp_lostpassword_url(); ?>" class="forgot">Forgot password?</a>
-      <p id="login-msg"></p>
-    </form>
-  </div>
-</div>
-
-
-<div id="auth-popup-register" class="auth-overlay">
-  <div class="auth-box">
-    <span class="close-popup" onclick="closeRegisterPopup()">×</span>
-
-    <form id="register-form" class="auth-form active">
-      <label>Email</label>
-      <input id="reg-email" type="email" placeholder="Value" required>
-
-      <label>Password</label>
-      <input id="reg-password" type="password" placeholder="Value" required>
-
-      <button type="submit" class="auth-btn">Register</button>
-      <p id="register-msg"></p>
-    </form>
-  </div>
-</div>
-
   
 </header>
 
